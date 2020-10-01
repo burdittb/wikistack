@@ -37,6 +37,10 @@ const Page = db.define("page", {
   },
 });
 
+Page.addHook("beforeValidate", (page, options) => {
+  page.slug = page.title.replace(/\s+/g, "_").replace(/\W/g, "");
+});
+
 module.exports = {
   db,
   Page,
